@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="#" th:href="@{/css/index.css}" />
+</head>
+<body style="background: #ccc;">
+<div id="head" th:fragment="head">[[${session.loginUser}]]</div>
+<div id="main">
+    <div id="mainLeft" th:fragment="main">
+        <a class="navList" th:href="@{emps}">员工列表</a>
+        <a class="navList">XXX列表</a>
+        <a class="navList">XXX列表</a>
+    </div>
+    <div id="mainRight"></div>
+</div>
+</body>
+</html>

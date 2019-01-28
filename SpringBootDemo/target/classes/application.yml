@@ -1,0 +1,83 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /xipiker
+spring:
+  messages:
+    basename: i18n.login
+  #页面重新编译command+F9
+  thymeleaf:
+    cache: false
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    #druid相关配置
+    druid:
+      #监控统计拦截的filters
+      filters: stat
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      #基本属性
+      url: jdbc:mysql://127.0.0.1:3306/springboot?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      username: root
+      password: root
+      #配置初始化大小/最小/最大
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      #获取连接等待超时时间
+      max-wait: 60000
+      #间隔多久进行一次检测，检测需要关闭的空闲连接
+      time-between-eviction-runs-millis: 60000
+      #一个连接在池中最小生存的时间
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    #消息发送到交换机确认机制,是否确认回调
+    publisher-confirms: true
+#mybatis 配置
+mybatis:
+  # type-aliases扫描路径
+  type-aliases-package: pers.springboot.domain
+  # mapper xml实现扫描路径
+  mapper-locations: classpath:mapper/*.xml
+  #Mybatis驼峰命名法
+  configuration:
+    map-underscore-to-camel-case: true
+
+# log日志配置
+logging:
+  level:
+    pers:
+      springboot:
+        dao: debug
+redis:
+  # Redis数据库索引  （默认为0）
+  database: 0
+  # Redis服务器地址
+  host: 127.0.0.1
+  # Redis服务器连接端口
+  port: 6379
+  # Redis 密码
+  password:
+  jedis:
+    pool:
+      # 连接池中的最小空闲连接
+      min-idle: 8
+      # 连接池中的最大空闲连接
+      max-idle: 500
+      # 连接池最大连接数（使用负值表示没有限制）
+      max-active: 2000
+      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-wait: 10000
+  # 连接超时时间（毫秒）
+  timeout: 0

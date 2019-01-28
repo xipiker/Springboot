@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>员工列表</title>
+    <link rel="stylesheet" href="#" th:href="@{/css/index.css}" />
+</head>
+<body style="background: #ccc;">
+<div th:replace="~{index :: head}"></div>
+<div id="main">
+    <div id="mainLeft" th:fragment="main">
+        <a class="navList" href="/xipiker/user/emps">员工列表</a>
+        <a class="navList">XXX列表</a>
+        <a class="navList">XXX列表</a>
+    </div>
+    <div id="mainRight">
+        <!--需要区分是员工修改还是添加-->
+        <form method="post" action="/xipiker/user/emp" style="padding: 20px;">
+            <!--发送put请求修改数据-->
+            <!--
+            1.SpringMvc中配置HiddenHttpMethodFilter;(springboot自动配置好了)
+            2.页面创建一个post表单
+            3.创建一个input项，name="_method";值就是我们指定的请求方式
+            -->
+            <input type="hidden" name="_method" value="put" th:if="${empRs!=null}" />
+            <input type="text" name="name" class="inputClz" placeholder="姓名" th:value="${empRs!=null}?${empRs.name}" />
+            <br /><br />
+            <input type="text" name="age" class="inputClz" placeholder="年龄" th:value="${empRs!=null}?${empRs.age}" />
+            <input type="hidden" name="id" th:value="${empRs!=null}?${empRs.id}" />
+            <br /><br />
+            <input type="submit" class="clzBtc" value="添加" th:value="${empRs!=null}?'修改':'添加'" />
+        </form>
+    </div>
+</div>
+</body>
+</html>

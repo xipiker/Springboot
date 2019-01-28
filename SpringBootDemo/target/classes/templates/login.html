@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <style type="text/css">
+        .inputDiv{
+            width:80%;
+            margin: 10px auto;
+            background:azure;
+            margin-left: 10%;
+            height:40px;
+            text-indent: 2em;
+            color:dimgray;
+        }
+        .divClz{
+            width:100%;
+        }
+        .btcSubmit{
+            width:40%;
+            height: 40px;
+            font-weight: bold;
+            background: cornflowerblue;
+            color:#fff;
+            border: 0px;
+            margin-left: 30%;
+            margin-bottom: 10px;
+        }
+        .loginClz{
+            width:30%;
+            background-color: #ccc;
+            margin: 100px auto;
+            margin-bottom: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="loginClz">
+        <form style="width:100%;background:cadetblue;" th:action="@{/user/login}" method="post">
+            <strong style="text-align: center;display: block;color: white;" th:text="#{login.tip}">Please sign in</strong>
+            <p style="text-align: center;line-height: 26px;color:darkred;" th:text="${message}" th:if="${not #strings.isEmpty(message)}"></p>
+            <div class="divClz">
+                <input class="inputDiv" type="text" name="username" id="username" th:placeholder="#{login.username}" placeholder="请输入用户名！" />
+            </div>
+            <div class="divClz">
+                <input class="inputDiv" type="password" name="password" id="password" th:placeholder="#{login.password}" placeholder="请输入密码！" />
+            </div>
+            <div class="divClz">
+                <input class="btcSubmit" type="submit" id="signIn" th:value="#{login.signIn}" value="登录" />
+            </div>
+        </form>
+    </div>
+    <div class="loginClz" style="margin: 10px auto;text-align: center;height:30px;line-height: 30px;">
+        <a th:href="@{/login.html(l='zh_CN')}">中文</a>
+        <a th:href="@{/login.html(l='en_US')}">English</a>
+    </div>
+</body>
+</html>

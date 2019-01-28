@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>员工列表</title>
+    <link rel="stylesheet" href="#" th:href="@{/css/index.css}" />
+</head>
+<body style="background: #ccc;">
+<div th:replace="~{index :: head}"></div>
+<div id="main">
+    <div th:replace="~{index :: main}"></div>
+    <div id="mainRight">
+        <div class="clzBtc"><a th:href="@{emp}">添加</a></div>
+        <table style="border: 1px solid #ccc;">
+            <tr>
+                <td>序号</td>
+                <td>姓名</td>
+                <td>年龄</td>
+                <td>操作</td>
+            </tr>
+            <tr th:each="list : ${listResult}">
+                <td th:text="${list.id}">1</td>
+                <td th:text="${list.name}">张三</td>
+                <td th:text="${list.age}">18</td>
+                <td>
+                    <a th:href="@{/user/emp/}+${list.id}">修改</a>
+                    <form th:action="@{/user/emp/}+${list.id}" method="post" style="float:right;">
+                        <input type="hidden" name="_method" value="delete" />
+                        <button type="submit">删除</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
